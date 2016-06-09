@@ -25,6 +25,17 @@ Pilha *CriarPilha(int capacidade) {
     return P;
 }
 
+#define CAPACIDADE_PADRAO (100)
+
+void AtualizarPonteiroPilha() {
+    if (MatrizCorrenteID == MATRIZ_MODELO)
+        PilhaMatrizModelo = PilhaCorrente;
+    if (MatrizCorrenteID == MATRIZ_CAMERA)
+        PilhaMatrizCamera = PilhaCorrente;
+    if (MatrizCorrenteID == MATRIZ_PROJECAO)
+        PilhaMatrizProjecao = PilhaCorrente;
+}
+
 void EmpilharMatriz() {
     double *destino = &PilhaCorrente->matrizes[16 * PilhaCorrente->topo];
     double *fonte = MatrizCorrente->dados;
@@ -32,13 +43,22 @@ void EmpilharMatriz() {
     PilhaCorrente->topo++;
 
     if(PilhaCorrente->topo >= PilhaCorrente->capacidade) {
-        // avanca
+        if (PilhaCorrente->proxima == NULL) {
+            PilhaCorrente->proxima = CriarPilha(CAPACIDADE_PADRAO);
+            PilhaCorrente->proxima->anterior = PilhaCorrente;
+        }
+
+        PilhaCorrente = PilhaCorrente->proxima;
+        AtualizarPonteiroPilha();
     }
 }
 
 void DesempilharMatriz() {
     if (PilhaCorrente->topo <= 0) {
-        // retornar uma pilha
+        if (PilhaCorrente->anterior == NULL)
+            return;
+        PilhaCorrente = PilhaCorrente->anterior;
+        AtualizarPonteiroPilha();
     }
 
     PilhaCorrente->topo--;

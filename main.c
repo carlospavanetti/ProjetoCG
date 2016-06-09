@@ -4,7 +4,6 @@
 #include "contexto.h"
 
 int main() {
-    // Matriz *P1 = CriarProjecaoPerspectiva(5);
     Matriz *P1 = CriarProjecaoPerspectivaVolume(0, 20, 0, 20, 10, 20);
     Matriz *P2 = CriarProjecaoOrtografica(0, 20, 0, 20, 0, 20);
     Matriz *P3 = CriarProjecaoOrtografica(-10, 10, -10, 10, -10, 10);

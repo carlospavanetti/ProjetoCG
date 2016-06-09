@@ -18,7 +18,11 @@ Pilha *CriarPilha(int capacidade);
 
 void EmpilharMatriz();
 void DesempilharMatriz();
-
 void SelecionarMatrizCorrente(int MID);
+
+#define BUFFER_SIMPLES (1 << 0)
+#define BUFFER_DUPLO   (1 << 1)
+
+void InicializarContexto(int params);
 
 #endif // __CONTEXTO_H__
