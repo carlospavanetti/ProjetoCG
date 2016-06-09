@@ -124,7 +124,7 @@ Matriz *Subtrair(Matriz *A, Matriz *B) {
     return Somar(A, Oposto(B));
 }
 
-Matriz *MultiplicarPorEscalar(Matriz *A, double k) {
+Matriz *MultiplicarPorEscalar(Matriz *A, TYPE k) {
     if (A == NULL)
         return NULL;
 

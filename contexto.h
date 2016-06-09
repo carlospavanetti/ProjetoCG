@@ -1,20 +1,24 @@
-struct {
+#ifndef __CONTEXTO_H__
+#define __CONTEXTO_H__
+
+#define MATRIZ_MODELO   (0)
+#define MATRIZ_CAMERA   (1)
+#define MATRIZ_PROJECAO (2)
+
+typedef struct Pilha {
     int topo;
-    GLdouble matrizes[100][3][3];
-} PILHA;
+    int capacidade;
+    double *matrizes;
 
-void EmpilharMatriz() {
-    COPIAR_MATRIZES(PILHA.matrizes[PILHA.topo], TRANSFORMACAO_MODELO);
-    PILHA.topo++;
-    if (PILHA.topo >= 100) printf("Por favor, empilhar somente 100 matrizes\n");
-}
+    struct Pilha *proxima;
+    struct Pilha *anterior;
+} Pilha;
 
-void DesempilharMatriz() {
-    if (PILHA.topo <= 0) {
-        printf("Não há matriz para desempilhar\n");
-        return;
-    }
+Pilha *CriarPilha(int capacidade);
 
-    PILHA.topo--;
-    COPIAR_MATRIZES(TRANSFORMACAO_MODELO, PILHA.matrizes[PILHA.topo]);
-}
+void EmpilharMatriz();
+void DesempilharMatriz();
+
+void SelecionarMatrizCorrente(int MID);
+
+#endif // __CONTEXTO_H__

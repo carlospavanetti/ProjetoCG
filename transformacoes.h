@@ -4,6 +4,10 @@
 #include "matriz.h"
 #include <math.h>
 
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
+
 Matriz *CriarTransformacaoEscala(double sx, double sy, double sz) {
     Matriz *S = CriarIdentidade(4);
     em(S, 0, 0) = sx;
@@ -19,10 +23,6 @@ Matriz *CriarTransformacaoTranslacao(double dx, double dy, double dz) {
     em(T, 2, 3) = dz;
     return T;
 }
-
-#ifndef M_PI
-    #define M_PI 3.14159265358979323846
-#endif
 
 #define X (0)
 #define Y (1)
