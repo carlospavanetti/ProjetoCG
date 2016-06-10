@@ -4,11 +4,11 @@
 #include <string.h>
 
 static Matriz *TransformacoesModelo;
-static Matriz *TransformacoesCamera;
+// static Matriz *TransformacoesCamera;
 static Matriz *TransformacoesProjecao;
 
 static Pilha *PilhaMatrizModelo;
-static Pilha *PilhaMatrizCamera;
+// static Pilha *PilhaMatrizCamera;
 static Pilha *PilhaMatrizProjecao;
 
 static Pilha *PilhaCorrente;
@@ -30,8 +30,8 @@ Pilha *CriarPilha(int capacidade) {
 void AtualizarPonteiroPilha() {
     if (MatrizCorrenteID == MATRIZ_MODELO)
         PilhaMatrizModelo = PilhaCorrente;
-    if (MatrizCorrenteID == MATRIZ_CAMERA)
-        PilhaMatrizCamera = PilhaCorrente;
+    // if (MatrizCorrenteID == MATRIZ_CAMERA)
+    //     PilhaMatrizCamera = PilhaCorrente;
     if (MatrizCorrenteID == MATRIZ_PROJECAO)
         PilhaMatrizProjecao = PilhaCorrente;
 }
@@ -75,10 +75,10 @@ void SelecionarMatrizCorrente(int MID) {
         MatrizCorrente = TransformacoesModelo;
     }
 
-    if (MID == MATRIZ_CAMERA) {
-        PilhaCorrente = PilhaMatrizCamera;
-        MatrizCorrente = TransformacoesCamera;
-    }
+    // if (MID == MATRIZ_CAMERA) {
+    //     PilhaCorrente = PilhaMatrizCamera;
+    //     MatrizCorrente = TransformacoesCamera;
+    // }
 
     if (MID == MATRIZ_PROJECAO) {
         PilhaCorrente = PilhaMatrizProjecao;
