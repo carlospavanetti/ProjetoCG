@@ -1,5 +1,5 @@
 COMPILADOR = gcc
-CFLAGS = -c -Wall
+PARAMETROS = -c -Wall
 
 BIBLIOTECAS = -lm
 
@@ -13,4 +13,7 @@ $(EXECUTAVEL): $(OBJETOS)
 	$(COMPILADOR) $(BIBLIOTECAS) $(OBJETOS) -o $@
 
 .c.o:
-	$(COMPILADOR) $(CFLAGS) $< -o $@
+	$(COMPILADOR) $(PARAMETROS) $< -o $@
+
+clean:
+	rm *.o $(EXECUTAVEL)
