@@ -85,3 +85,17 @@ void SelecionarMatrizCorrente(int MID) {
         MatrizCorrente = TransformacoesProjecao;
     }
 }
+
+void InicializarContexto(int params) {
+    TransformacoesModelo = CriarIdentidade(4);
+}
+
+Matriz *Modelo() {
+    return CopiarMatriz(TransformacoesModelo);
+}
+
+void AplicarTransformacao(Matriz *T) {
+    Matriz *R = Multiplicar(T, MatrizCorrente);
+    memcpy(MatrizCorrente->dados, R->dados, 16 * sizeof(double));
+    LiberarMatriz(&R);
+}

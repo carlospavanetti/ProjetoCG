@@ -25,4 +25,7 @@ void SelecionarMatrizCorrente(int MID);
 
 void InicializarContexto(int params);
 
+Matriz *Modelo();
+void AplicarTransformacao(Matriz *);
+
 #endif // __CONTEXTO_H__

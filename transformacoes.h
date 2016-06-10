@@ -51,7 +51,7 @@ Matriz *CriarTransformacaoRotacao(double ang, int eixo) {
     }
 
     if (eixo == Z) {
-        em(R, 0, 0) = em(R, 2, 2) = cosAng;
+        em(R, 0, 0) = em(R, 1, 1) = cosAng;
         em(R, 1, 0) =  senAng;
         em(R, 0, 1) = -senAng;
     }
