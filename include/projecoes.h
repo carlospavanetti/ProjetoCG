@@ -34,6 +34,14 @@ Matriz *CriarProjecaoPerspectivaVolume(
         double perto, double longe) {
 
 
+    if (perto < 0 || longe < perto) {
+        printf("Plano de projeção perspectiva deve receber valor positivo\n");
+        return NULL;
+    }
+
+    perto *= -1; // os planos de projeção devem estar
+    longe *= -1;
+
     double fx = 2 * perto / (direita - esquerda);
     double fy = 2 * perto / (cima    - baixo);
     double dz = 2 * perto * longe / (perto - longe);
