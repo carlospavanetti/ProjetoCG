@@ -83,3 +83,33 @@ Matriz *CriarProjecaoPerspectivaAspecto(
     return CriarProjecaoPerspectivaVolume(
         esquerda, direita, baixo, cima, perto, longe);
 }
+
+void AplicarProjecaoOrtografica(
+        double esquerda, double direita,
+        double baixo, double cima,
+        double perto, double longe) {
+    Matriz *P = CriarProjecaoOrtografica(
+        esquerda, direita, baixo, cima, perto, longe);
+    AplicarTransformacao(P);
+    LiberarMatriz(&P);
+}
+
+void AplicarProjecaoPerspectivaVolume(
+        double esquerda, double direita,
+        double baixo, double cima,
+        double perto, double longe) {
+
+    Matriz *P = CriarProjecaoPerspectivaVolume(
+        esquerda, direita, baixo, cima, perto, longe);
+    AplicarTransformacao(P);
+    LiberarMatriz(&P);
+}
+
+void AplicarProjecaoPerspectivaAspecto(
+        double angulo_de_abertura, double proporcao,
+        double perto, double longe) {
+    Matriz *P = CriarProjecaoPerspectivaAspecto(
+        angulo_de_abertura, proporcao, perto, longe);
+    AplicarTransformacao(P);
+    LiberarMatriz(&P);
+}

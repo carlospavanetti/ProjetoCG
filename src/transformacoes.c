@@ -56,6 +56,24 @@ Matriz *CriarTransformacaoRotacao(double ang, int eixo) {
     return R;
 }
 
+void AplicarEscala(double sx, double sy, double sz) {
+    Matriz *S = CriarTransformacaoEscala(sx, sy, sz);
+    AplicarTransformacao(S);
+    LiberarMatriz(&S);
+}
+
+void AplicarTranslacao(double dx, double dy, double dz) {
+    Matriz *T = CriarTransformacaoTranslacao(dx, dy, dz);
+    AplicarTransformacao(T);
+    LiberarMatriz(&T);
+}
+
+void AplicarRotacao(double ang, int eixo) {
+    Matriz *R = CriarTransformacaoRotacao(ang, eixo);
+    AplicarTransformacao(R);
+    LiberarMatriz(&R);
+}
+
 void Homogeneizar(Matriz *V) {
     if (V->colunas > 1)
         return;

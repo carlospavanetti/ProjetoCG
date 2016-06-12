@@ -18,7 +18,11 @@ double *ProjetarVertices(double *vertices, int quantidade) {
             for (j = 0; j < 4; ++j)
                 projetados[_4v + i] += em(MP, i, j) * vertices[_4v + j];
         }
-        projetados[_4v + 3] = 1;
+
+        double w = projetados[_4v + 3] ;
+        // if (w != 1 && w != 0) // homogeneizar
+            for (i = 0; i < 4; ++i)
+                projetados[_4v + i] /= w;
     }
 
     return projetados;

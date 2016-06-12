@@ -27,6 +27,8 @@ void InicializarContexto(int params);
 
 Matriz *MatrizModelo();
 Matriz *MatrizProjecao();
+
 void AplicarTransformacao(Matriz *);
+void CarregarIdentidade();
 
 #endif // __CONTEXTO_H__

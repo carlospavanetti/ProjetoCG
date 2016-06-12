@@ -18,4 +18,18 @@ Matriz *CriarProjecaoPerspectivaAspecto(
         double angulo_de_abertura, double proporcao,
         double perto, double longe);
 
+void AplicarProjecaoOrtografica(
+        double esquerda, double direita,
+        double baixo, double cima,
+        double perto, double longe);
+
+void AplicarProjecaoPerspectivaVolume(
+        double esquerda, double direita,
+        double baixo, double cima,
+        double perto, double longe);
+
+void AplicarProjecaoPerspectivaAspecto(
+        double angulo_de_abertura, double proporcao,
+        double perto, double longe);
+
 #endif // __PROJECOES_H__

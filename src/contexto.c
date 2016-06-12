@@ -88,6 +88,7 @@ void SelecionarMatrizCorrente(int MID) {
 
 void InicializarContexto(int params) {
     TransformacoesModelo = CriarIdentidade(4);
+    TransformacoesProjecao = CriarIdentidade(4);
 }
 
 Matriz *MatrizModelo() {
@@ -102,4 +103,9 @@ void AplicarTransformacao(Matriz *T) {
     Matriz *R = Multiplicar(T, MatrizCorrente);
     memcpy(MatrizCorrente->dados, R->dados, 16 * sizeof(double));
     LiberarMatriz(&R);
+}
+
+void CarregarIdentidade() {
+    static double Id[] = { 1, 0, 0, 0,   0, 1, 0, 0,   0, 0, 1, 0,   0, 0, 0, 1 };
+    memcpy(MatrizCorrente->dados, Id, 16 * sizeof(double));
 }
