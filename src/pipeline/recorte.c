@@ -1,56 +1,12 @@
-#include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "contexto.h"
 #include "poligonos.h"
+#include "helpers/lista_vertices.h"
+#include "helpers/interseccao_retas.h"
 
-typedef struct {
-    double *vertices;
-    int indice;
-    int capacidade;
-} ListaVertices;
-
-ListaVertices *lista_vazia(int quantidade) {
-    ListaVertices *V = (ListaVertices *) malloc(sizeof(ListaVertices));
-
-    V->indice = 0;
-    V->capacidade = quantidade;
-    V->vertices = (double *) malloc(3 * quantidade * sizeof(double));
-
-    int i;
-    for (i = 0; i < 3 * quantidade; ++i)
-        V->vertices[i + X] = V->vertices[i + Y] = V->vertices[i + Z] = NAN;
-
-    return V;
-}
-
-void LiberarLista(ListaVertices **L) {
-    ListaVertices *ref = *L;
-    free(ref->vertices);
-    free(ref);
-    *L = NULL;
-}
-
-void inserir_vertice(ListaVertices *lista, double *vertice) {
-    int indice = lista->indice;
-    // if (indice > lista->capacidade) XXX exception!!!
-
-    lista->vertices[indice + X] = vertice[X];
-    lista->vertices[indice + Y] = vertice[Y];
-    lista->vertices[indice + Z] = vertice[Z];
-
-    lista->indice = indice + 1;
-}
-
-int dentro_aresta(int i, double *p1) {
-    return 1;
-}
-
-double *interseccao(int i, double *a, double *b) {
-    return NULL;
-}
-
-Poligono *RecortarParaAreaDeVisaoB(Poligono *poligono) {
+Poligono *RecortarParaAreaDeVisao(Poligono *poligono) {
     ListaVertices *lista_entrada;
     ListaVertices *lista_saida = lista_vazia(poligono->numero_vertices);
 
@@ -86,14 +42,8 @@ Poligono *RecortarParaAreaDeVisaoB(Poligono *poligono) {
     }
     LiberarLista(&lista_entrada);
 
-    Poligono *resultante = NULL;
-    // resultante <- lista_saida;
+    Poligono *resultante = CriarPoligonoDeListaDeVertices(lista_saida);
+    LiberarLista(&lista_saida);
 
     return resultante;
-}
-
-double *VerticeDoPoligono(Poligono *p, int indice) {
-   if (p == NULL)
-       return NULL;
-   return p->endereco_vertices + 4 * p->indice_vertices[indice];
 }
