@@ -4,6 +4,8 @@
 #include "projecoes.h"
 #include "transformacoes.h"
 
+#include <math.h>
+
 Matriz *CriarProjecaoOrtografica(
         double esquerda, double direita,
         double baixo, double cima,

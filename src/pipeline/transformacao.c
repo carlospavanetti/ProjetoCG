@@ -3,12 +3,11 @@
 
 #include <stdlib.h>
 
-double *TransformarVerticesA(double *vertices, int quantidade) {
+double *TransformarVertices(double *vertices, int quantidade) {
     double *transformados;
-    Matriz *MVM = Modelo();
+    Matriz *MVM = MatrizModelo();
 
-    int tamanho_array = 4 * quantidade / 3;
-    transformados = (double *) malloc(tamanho_array * sizeof(double));
+    transformados = (double *) malloc(4 * quantidade * sizeof(double));
 
     int v, _3v, _4v, i, j;
     for (v = 0; v < quantidade; v++) {

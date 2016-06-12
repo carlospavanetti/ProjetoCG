@@ -16,4 +16,4 @@ $(EXECUTAVEL): $(OBJETOS)
 	$(COMPILADOR) $(PARAMETROS) $^ -o $@
 
 clean:
-	rm $(OBJETOS) $(EXECUTAVEL)
+	@rm $(OBJETOS) $(EXECUTAVEL)

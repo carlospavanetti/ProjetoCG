@@ -90,8 +90,12 @@ void InicializarContexto(int params) {
     TransformacoesModelo = CriarIdentidade(4);
 }
 
-Matriz *Modelo() {
+Matriz *MatrizModelo() {
     return CopiarMatriz(TransformacoesModelo);
+}
+
+Matriz *MatrizProjecao() {
+    return CopiarMatriz(TransformacoesProjecao);
 }
 
 void AplicarTransformacao(Matriz *T) {
