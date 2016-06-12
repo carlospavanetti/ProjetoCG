@@ -4,7 +4,7 @@
 #include "contexto.h"
 #include "poligonos.h"
 #include "helpers/lista_vertices.h"
-#include "helpers/interseccao_retas.h"
+#include "helpers/interseccao.h"
 
 Poligono *RecortarParaAreaDeVisao(Poligono *poligono) {
     ListaVertices *lista_entrada;
@@ -30,13 +30,13 @@ Poligono *RecortarParaAreaDeVisao(Poligono *poligono) {
     for (i = 0; i < tamanho_entrada; ++i) {
         double *P2 = &lista_entrada->vertices[i];
 
-        if (dentro_aresta(linha_recorte, P2)) {
-            if (dentro_aresta(linha_recorte, P1)) {
+        if (dentro_plano(linha_recorte, P2)) {
+            if (dentro_plano(linha_recorte, P1)) {
                 inserir_vertice(lista_saida, interseccao(linha_recorte, P1, P2));
             }
             inserir_vertice(lista_saida, P2);
         }
-        else if (dentro_aresta(linha_recorte, P1))
+        else if (dentro_plano(linha_recorte, P1))
             inserir_vertice(lista_saida, interseccao(linha_recorte, P1, P2));
         P1 = P2;
     }
