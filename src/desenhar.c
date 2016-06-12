@@ -14,7 +14,7 @@ void DesenharTriangulos(double *vertices, int quantidade) {
     // int *textura_final = RenderizarFragmentos(rasterizacao);
 
     /* TODO:
-    Iluminacao(); => VertexShader, ponto de luz em cada vertice
+    Iluminacao(); => VertexShader, ponto de luz em cada vertice - XXX: não!
     AplicarProjecao(); => Lista de vertices projetados
     RecortarArestas(); => Lista de pontos e arestas visiveis
     PreencherPoligonos(); => Lista de linhas horizontais que preenchem poligono
