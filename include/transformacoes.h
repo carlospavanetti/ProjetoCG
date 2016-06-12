@@ -4,10 +4,6 @@
 #include "matriz.h"
 #include "contexto.h"
 
-#define X (0)
-#define Y (1)
-#define Z (2)
-
 double GrausARadianos(double graus);
 void Homogeneizar(Matriz *V);
 

@@ -1,6 +1,13 @@
 #ifndef __CONTEXTO_H__
 #define __CONTEXTO_H__
 
+#include "matriz.h"
+
+#define X (0)
+#define Y (1)
+#define Z (2)
+#define W (3)
+
 #define MATRIZ_MODELO   (0)
 #define MATRIZ_CAMERA   (1)
 #define MATRIZ_PROJECAO (2)
