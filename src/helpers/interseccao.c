@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "contexto.h"
-#include "interseccao.h"
+#include "helpers/interseccao.h"
 
 bool dentro_plano(int plano, double *ponto) {
     return SINAL(plano) * ponto[COORDENADA(plano)] < 1;

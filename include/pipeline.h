@@ -1,9 +1,11 @@
 #ifndef __PIPELINE_H__
 #define __PIPELINE_H__
 
+#include "poligonos.h" 
+
 double *TransformarVertices(double *vertices, int quantidade);
 double *ProjetarVertices(double *vertices, int quantidade);
-// Poligono *RecortarParaAreaDeVisao(Poligono *poligono);
+Poligono *RecortarParaAreaDeVisao(Poligono *poligono);
 
 // ListaLinhas
 // TabelaLinhas *RasterizarPoligono(Poligono *arestas);

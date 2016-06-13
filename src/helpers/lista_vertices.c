@@ -4,7 +4,7 @@
 
 #include "contexto.h"
 #include "poligonos.h"
-#include "lista_vertices.h"
+#include "helpers/lista_vertices.h"
 
 ListaVertices *lista_vazia(int quantidade) {
     ListaVertices *V = (ListaVertices *) malloc(sizeof(ListaVertices));
