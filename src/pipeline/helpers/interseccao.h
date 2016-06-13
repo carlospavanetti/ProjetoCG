@@ -3,26 +3,15 @@
 
 #include <stdbool.h>
 
-#define ESQUERDA (0)
-#define DIREITA  (1)
-#define BAIXO    (2)
-#define CIMA     (3)
-#define PERTO    (4)
-#define LONGE    (5)
+#define ESQUERDA (0) // X0 000
+#define DIREITA  (1) // X1 001
+#define BAIXO    (2) // Y0 010
+#define CIMA     (3) // Y1 011
+#define PERTO    (4) // Z0 100
+#define LONGE    (5) // Z1 101
 
-#define ESQUERDA_COORD (X)
-#define DIREITA_COORD  (X)
-#define BAIXO_COORD    (Y)
-#define CIMA_COORD     (Y)
-#define PERTO_COORD    (Z)
-#define LONGE_COORD    (Z)
-
-#define ESQUERDA_SINAL (-1)
-#define DIREITA_SINAL  (+1)
-#define BAIXO_SINAL    (-1)
-#define CIMA_SINAL     (+1)
-#define PERTO_SINAL    (-1)
-#define LONGE_SINAL    (+1)
+#define COORDENADA(PLANO) ((PLANO) >> 1)
+#define SINAL(PLANO) ((((PLANO) & 1)  == 0) ? (-1) : (1))
 
 bool dentro_plano(int plano, double *ponto);
 double *interseccao(int plano, double *a, double *b);

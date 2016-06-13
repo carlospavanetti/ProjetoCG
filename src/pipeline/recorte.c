@@ -32,12 +32,17 @@ Poligono *RecortarParaAreaDeVisao(Poligono *poligono) {
 
         if (dentro_plano(linha_recorte, P2)) {
             if (dentro_plano(linha_recorte, P1)) {
-                inserir_vertice(lista_saida, interseccao(linha_recorte, P1, P2));
+                double *ponto_interseccao =  interseccao(linha_recorte, P1, P2);
+                inserir_vertice(lista_saida, ponto_interseccao);
+                free(ponto_interseccao);
             }
             inserir_vertice(lista_saida, P2);
         }
-        else if (dentro_plano(linha_recorte, P1))
+        else if (dentro_plano(linha_recorte, P1)) {
+            double *ponto_interseccao =  interseccao(linha_recorte, P1, P2);
             inserir_vertice(lista_saida, interseccao(linha_recorte, P1, P2));
+            free(ponto_interseccao);
+        }
         P1 = P2;
     }
     LiberarLista(&lista_entrada);
