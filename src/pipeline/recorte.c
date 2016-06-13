@@ -34,9 +34,9 @@ ListaVertices *RecortarContraPlano(int plano_recorte, ListaVertices *entrada) {
     int tamanho_entrada = entrada->indice;
     ListaVertices *saida = lista_vazia(tamanho_entrada);
 
-    double *P1 = &entrada->vertices[tamanho_entrada - 1];
+    double *P1 = &entrada->vertices[tamanho_entrada - 4];
     for (i = 0; i < tamanho_entrada; ++i) {
-        double *P2 = &entrada->vertices[i];
+        double *P2 = &entrada->vertices[i << 2];
 
         if (dentro_plano(plano_recorte, P2)) {
             if (!dentro_plano(plano_recorte, P1)) {

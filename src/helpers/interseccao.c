@@ -1,4 +1,4 @@
-// #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "contexto.h"
 #include "helpers/interseccao.h"
@@ -10,7 +10,8 @@ bool dentro_plano(int plano, double *ponto) {
 double *interseccao(int plano, double *a, double *b) {
     int i;
     double delta[3];
-    double *ponto_interseccao = (double *) malloc(3 * sizeof(double));
+    double *ponto_interseccao = (double *) malloc(4 * sizeof(double));
+    ponto_interseccao[W] = 1.0;
 
     for (i = X; i <= Z; ++i)
         delta[i] = b[i] - a[i];
@@ -24,8 +25,8 @@ double *interseccao(int plano, double *a, double *b) {
         ponto_interseccao[i] = (delta[i] * fator / delta[eixo]) + a[i];
     }
 
-    // printf("%d> A: %.2f %.2f %.2f\n", plano, a[X], a[Y], a[Z]);
-    // printf("%d> B: %.2f %.2f %.2f\n", plano, b[X], b[Y], b[Z]);
+    printf("%d> A: %.2f %.2f %.2f\n", plano, a[X], a[Y], a[Z]);
+    printf("%d> B: %.2f %.2f %.2f\n", plano, b[X], b[Y], b[Z]);
     return ponto_interseccao;
 }
 
