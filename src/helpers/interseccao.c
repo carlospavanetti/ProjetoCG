@@ -4,11 +4,7 @@
 #include "helpers/interseccao.h"
 
 bool dentro_plano(int plano, double *ponto) {
-    int s = SINAL(plano);
-    int c = COORDENADA(plano);
-    int w = ponto[c];
-    return s * w <= 1;
-    // return SINAL(plano) * ponto[COORDENADA(plano)] <= 1;
+    return SINAL(plano) * ponto[COORDENADA(plano)] <= 1;
 }
 
 double *interseccao(int plano, double *a, double *b) {
@@ -21,7 +17,7 @@ double *interseccao(int plano, double *a, double *b) {
         delta[i] = b[i] - a[i];
 
     int eixo = COORDENADA(plano);
-    int fator = SINAL(plano) - a[eixo]; // xp - xa
+    double fator = SINAL(plano) - a[eixo]; // xp - xa
 
     for (i = X; i <= Z; ++i) {
         if (eixo == i) {
@@ -32,8 +28,6 @@ double *interseccao(int plano, double *a, double *b) {
         ponto_interseccao[i] = (delta[i] * fator / delta[eixo]) + a[i];
     }
 
-    // printf("%d> A: %.2f %.2f %.2f\n", plano, a[X], a[Y], a[Z]);
-    // printf("%d> B: %.2f %.2f %.2f\n", plano, b[X], b[Y], b[Z]);
     return ponto_interseccao;
 }
 
