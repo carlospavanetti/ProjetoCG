@@ -23,5 +23,6 @@ double *TransformarVertices(double *vertices, int quantidade) {
         transformados[_4v + 3] = 1;
     }
 
+    // LiberarMatriz(&MVM); // Precisa se contexto retorna cópia da matriz
     return transformados;
 }

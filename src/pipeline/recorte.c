@@ -28,7 +28,7 @@ Poligono *RecortarParaAreaDeVisao(Poligono *poligono) {
 
     return resultante;
 }
-
+#include <stdio.h>
 ListaVertices *RecortarContraPlano(int plano_recorte, ListaVertices *entrada) {
     int i;
     int tamanho_entrada = entrada->indice;

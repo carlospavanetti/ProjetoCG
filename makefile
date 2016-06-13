@@ -1,5 +1,6 @@
 COMPILADOR = @gcc
-PARAMETROS = -c -Wall -Iinclude
+DEBUG = -g -O0
+PARAMETROS =  $(DEBUG) -c -Wall -Iinclude
 
 BIBLIOTECAS = -lm
 

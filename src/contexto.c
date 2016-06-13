@@ -92,11 +92,13 @@ void InicializarContexto(int params) {
 }
 
 Matriz *MatrizModelo() {
-    return CopiarMatriz(TransformacoesModelo);
+    // return CopiarMatriz(TransformacoesModelo);
+    return TransformacoesModelo;
 }
 
 Matriz *MatrizProjecao() {
-    return CopiarMatriz(TransformacoesProjecao);
+    // return CopiarMatriz(TransformacoesProjecao);
+    return TransformacoesProjecao;
 }
 
 void AplicarTransformacao(Matriz *T) {
