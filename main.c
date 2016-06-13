@@ -7,13 +7,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+Poligono *quadrilatero(double *vertices) {
+    Poligono *P = (Poligono *) malloc(sizeof(Poligono));
+
+    P->numero_vertices = 4;
+    P->endereco_vertices = vertices;
+
+    int i;
+    P->indice_vertices = (int *) malloc(4 * sizeof(int));
+    for (i = 0; i < 4; ++i)
+        P->indice_vertices[i] = i;
+    return P;
+}
+
 int main() {
     InicializarContexto(0);
     double vertices[] = {
-        1.0, 0.0, 1.0,
-        0.0, 2.0, 1.0,
-        0.0, 0.0, 0.5,
-        2.0, 0.0, 0.5
+        0.5, 0.0, 1,
+        0.5, 0.5, 1,
+        0.0, 0.5, 1,
+        0.0, 0.0, 1
     };
 
     SelecionarMatrizCorrente(MATRIZ_MODELO);
@@ -39,6 +52,14 @@ int main() {
         for (j = 0; j < 4; j++)
             printf("%.3f ", projetados[i * 4 + j]);
         printf("\n");
+    }
+
+    Poligono *p = quadrilatero(projetados);
+    Poligono *r = RecortarParaAreaDeVisao(p);
+
+    for (i = 0; i < r->numero_vertices; ++i) {
+        double *v = VerticeDoPoligono(r, i);
+        printf("%.2f %.2f %.2f\n", v[X], v[Y], v[Z]);
     }
 
     free(transformados);
