@@ -22,6 +22,8 @@ Poligono *poligono_teste(double *vertices) {
 
 int main() {
     InicializarContexto(0);
+
+    #define NUMERO_VERTICES 3
     double vertices[] = {
         -2.0, -2.0, 1,
         2.0, 2.0, 1,
@@ -38,29 +40,37 @@ int main() {
 
     double *transformados = TransformarVertices(vertices, 4);
     double *projetados = ProjetarVertices(transformados, 4);
-    int i, j;
 
-    // for (i = 0; i < 4; i++) {
+    // int i, j;
+    // for (i = 0; i < NUMERO_VERTICES; i++) {
     //     for (j = 0; j < 4; j++)
     //         printf("%.3f ", transformados[i * 4 + j]);
     //     printf("\n");
     // }
     // printf("\n");
-
-    // for (i = 0; i < 4; i++) {
+    //
+    // for (i = 0; i < NUMERO_VERTICES; i++) {
     //     for (j = 0; j < 4; j++)
     //         printf("%.3f ", projetados[i * 4 + j]);
     //     printf("\n");
     // }
 
-    // Poligono *p = poligono_teste(projetados);
-    // Poligono *r = RecortarParaAreaDeVisao(p);
+    Poligono *p = poligono_teste(projetados);
+    Poligono *r = RecortarParaAreaDeVisao(p);
 
     // for (i = 0; i < r->numero_vertices; ++i) {
     //     double *v = VerticeDoPoligono(r, i);
     //     printf("%.2f %.2f %.2f\n", v[X], v[Y], v[Z]);
     // }
 
+    free(p->indice_vertices);
+    free(p);
+    free(r->indice_vertices);
+    free(r->endereco_vertices);
+    free(r);
+
+
     free(transformados);
     free(projetados);
+    FinalizarContexto();
 }

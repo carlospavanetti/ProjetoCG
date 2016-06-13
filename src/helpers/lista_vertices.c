@@ -28,9 +28,8 @@ void LiberarLista(ListaVertices **L) {
 }
 
 void inserir_vertice(ListaVertices *lista, double *vertice) {
-    int indice = 4 * lista->indice;
+    int indice = lista->indice << 2;
     // if (indice > lista->capacidade) XXX exception!!!
-
     lista->vertices[indice + X] = vertice[X];
     lista->vertices[indice + Y] = vertice[Y];
     lista->vertices[indice + Z] = vertice[Z];

@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -28,15 +29,17 @@ Poligono *RecortarParaAreaDeVisao(Poligono *poligono) {
 
     return resultante;
 }
-#include <stdio.h>
+
 ListaVertices *RecortarContraPlano(int plano_recorte, ListaVertices *entrada) {
     int i;
     int tamanho_entrada = entrada->indice;
-    ListaVertices *saida = lista_vazia(tamanho_entrada);
+    // cada três vertices pode gerar quatro quando recortados contra um plano
+    ListaVertices *saida = lista_vazia(4 * tamanho_entrada / 3);
 
-    double *P1 = &entrada->vertices[tamanho_entrada - 4];
+    double *P1 = &entrada->vertices[4 * (tamanho_entrada - 1)];
     for (i = 0; i < tamanho_entrada; ++i) {
         double *P2 = &entrada->vertices[i << 2];
+        if (P2[X] == NAN) break;
 
         if (dentro_plano(plano_recorte, P2)) {
             if (!dentro_plano(plano_recorte, P1)) {

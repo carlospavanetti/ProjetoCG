@@ -31,6 +31,7 @@ void SelecionarMatrizCorrente(int MID);
 #define BUFFER_DUPLO   (1 << 1)
 
 void InicializarContexto(int params);
+void FinalizarContexto();
 
 Matriz *MatrizModelo();
 Matriz *MatrizProjecao();

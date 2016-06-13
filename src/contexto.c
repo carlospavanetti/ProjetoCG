@@ -91,13 +91,16 @@ void InicializarContexto(int params) {
     TransformacoesProjecao = CriarIdentidade(4);
 }
 
+void FinalizarContexto() {
+    LiberarMatriz(&TransformacoesModelo);
+    LiberarMatriz(&TransformacoesProjecao);
+}
+
 Matriz *MatrizModelo() {
-    // return CopiarMatriz(TransformacoesModelo);
     return TransformacoesModelo;
 }
 
 Matriz *MatrizProjecao() {
-    // return CopiarMatriz(TransformacoesProjecao);
     return TransformacoesProjecao;
 }
 
