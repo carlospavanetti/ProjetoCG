@@ -41,7 +41,7 @@ int main() {
     double *transformados = TransformarVertices(vertices, 4);
     double *projetados = ProjetarVertices(transformados, 4);
 
-    int i, j;
+    // int i, j;
     // for (i = 0; i < NUMERO_VERTICES; i++) {
     //     for (j = 0; j < 4; j++)
     //         printf("%.3f ", transformados[i * 4 + j]);
@@ -49,25 +49,29 @@ int main() {
     // }
     // printf("\n");
     //
-    for (i = 0; i < NUMERO_VERTICES; i++) {
-        for (j = 0; j < 4; j++)
-            printf("%.3f ", projetados[i * 4 + j]);
-        printf("\n");
-    }
+    // for (i = 0; i < NUMERO_VERTICES; i++) {
+    //     for (j = 0; j < 4; j++)
+    //         printf("%.3f ", projetados[i * 4 + j]);
+    //     printf("\n");
+    // }
 
     Poligono *p = poligono_teste(projetados);
     Poligono *r = RecortarParaAreaDeVisao(p);
 
-    for (i = 0; i < r->numero_vertices; ++i) {
-        double *v = VerticeDoPoligono(r, i);
-        printf("%.2f %.2f %.2f\n", v[X], v[Y], v[Z]);
-    }
+    // for (i = 0; i < r->numero_vertices; ++i) {
+    //     double *v = VerticeDoPoligono(r, i);
+    //     printf("%.2f %.2f %.2f\n", v[X], v[Y], v[Z]);
+    // }
+
+    // PrepararPoligonoParaNovoViewport(r);
 
     free(p->indice_vertices);
     free(p);
     free(r->indice_vertices);
     free(r->endereco_vertices);
     free(r);
+
+    RasterizarPoligono(NULL);
 
 
     free(transformados);
