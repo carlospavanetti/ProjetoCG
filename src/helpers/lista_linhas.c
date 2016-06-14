@@ -4,6 +4,8 @@
 #include "contexto.h"
 #include "helpers/lista_linhas.h"
 
+#define LINHAS_VIEWPORT (2048)
+
 void InserirRegistroAresta(
     DadosAresta **lista,
     int y_max, int x_inicial, int z_inicial,
@@ -12,25 +14,24 @@ void InserirRegistroAresta(
     DadosAresta *novo_registro =
         NovoRegistroAresta(y_max, x_inicial, z_inicial, dx, dy, dz);
 
-    if (*lista == NULL) {
-        *lista = novo_registro;
+    if ((*lista) == NULL) {
+        (*lista) = novo_registro;
+        novo_registro->proxima = NULL;
         return;
     }
 
-    DadosAresta *posicao = (*lista);
+    DadosAresta *posicao = *lista;
     while (posicao->proxima != NULL) {
-        if (posicao->proxima->x_inicial > x_inicial)
-            break;
         posicao = posicao->proxima;
     }
 
-    if (posicao->proxima == NULL) {
-        posicao->proxima = novo_registro;
-        return;
-    }
-
-    novo_registro->proxima = posicao->proxima;
+    // novo_registro->proxima = posicao->proxima;
+    // posicao->proxima = novo_registro;
     posicao->proxima = novo_registro;
+    posicao->proxima->proxima = NULL;
+    // *lista = novo_registro;
+    // novo_registro->proxima = NULL;
+    return;
 }
 
 DadosAresta *NovoRegistroAresta(
@@ -59,12 +60,12 @@ DadosAresta *NovoRegistroAresta(
 
 void LiberarTabelaArestas(DadosAresta **tabela) {
     int i;
-    for (i = 0; i < 2048; i++) {
+    for (i = 0; i < LINHAS_VIEWPORT; i++) {
         DadosAresta *ref = tabela[i];
         DadosAresta *lixo;
-        while (ref != NULL) {
+        if (ref != NULL) {
             lixo = ref;
-            ref = ref->proxima;
+            // ref = ref->proxima;
             free(lixo);
         }
     }
@@ -77,15 +78,19 @@ void TransferirParaAET(DadosAresta **GET, DadosAresta **AET, int pos_y) {
     while (lista->proxima != NULL)
         lista = lista->proxima;
 
-    lista->proxima = *AET;
+    lista->proxima = *AET; // Problema aqui!
+    if (lista->proxima != NULL)
+        lista->proxima->proxima = NULL;
     *AET = GET[pos_y];
+
+
     // AET = OrdenarAET(AET);
 }
 
 ListaLinhas *InicializarListaLinhas() {
     ListaLinhas *L = (ListaLinhas *) malloc(sizeof(ListaLinhas));
 
-    L->capacidade = 1 << 31;
+    L->capacidade = (1 << 16) - 1;
     L->dados = (Linha *) malloc(L->capacidade * sizeof(Linha));
     L->quantidade = 0;
 
@@ -144,7 +149,6 @@ void InserirLinha(ListaLinhas *lista, Linha *linha) {
 
     int index = lista->quantidade;
 
-    printf("%p %d %d\n", lista->dados, lista->dados[index].y, index);
     lista->dados[index].y = linha->y;
     lista->dados[index].x_inicial = linha->x_inicial;
     lista->dados[index].x_final   = linha->x_final;

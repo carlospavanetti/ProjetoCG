@@ -3,9 +3,11 @@
 #include "contexto.h"
 #include "helpers/preparar_rasterizacao.h"
 
+#define LINHAS_VIEWPORT (2048)
+
 #define LINHA_HORIZONTAL(A, B) ((A)[Y] == (B)[Y])
 DadosAresta **InicializaGET(int *vertices, int quantidade) {
-    DadosAresta **GET = calloc(2048, sizeof(DadosAresta *));
+    DadosAresta **GET = calloc(LINHAS_VIEWPORT, sizeof(DadosAresta *));
 
     int *P1 = &vertices[(quantidade - 1) << 2];
 
@@ -56,8 +58,11 @@ int *PrepararPoligonoParaNovoViewport(Poligono *poligono) {
     for (i = 0; i < poligono->numero_vertices; ++i) {
         double * V = VerticeDoPoligono(poligono, i);
 
-        for (j = X; j <= Z; ++j)
+        for (j = X; j <= Z; ++j) {
             sequencia_vertices[(i << 2) + j] = (1024 * V[j]) + 1024;
+            if (sequencia_vertices[(i << 2) + j] == 2048)
+                sequencia_vertices[(i << 2) + j]  = 2047;
+        }
         sequencia_vertices[(i << 2) + W] = 1;
         printf("%d %d %d\n", sequencia_vertices[(i << 2) + X], sequencia_vertices[(i << 2) + Y], sequencia_vertices[(i << 2) + Z]);
     }

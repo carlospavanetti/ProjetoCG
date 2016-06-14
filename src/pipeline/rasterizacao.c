@@ -7,6 +7,8 @@
 #include "helpers/lista_linhas.h"
 #include "helpers/preparar_rasterizacao.h"
 
+#define LINHAS_VIEWPORT (2048)
+
 ListaLinhas *RasterizarPoligono(Poligono *poligono) {
     // viewport [-1, 1] => [-1024, 1024] => [0, 2048]
 
@@ -22,13 +24,23 @@ ListaLinhas *RasterizarPoligono(Poligono *poligono) {
     while (GET[varredura_y] == NULL)
         varredura_y++;
 
-    while (varredura_y < 2048) {
+    while (varredura_y < LINHAS_VIEWPORT) {
         if (GET[varredura_y] != NULL)
             TransferirParaAET(GET, AET, varredura_y);
         TracarLinhas(AET, varredura_y, lista);
         varredura_y++;
     }
-
+    // 
+    // int i;
+    // for (i = 0; i < LINHAS_VIEWPORT; ++i) {
+    //     DadosAresta *ref = GET[i];
+    //     printf("%04d ", i);
+    //     while (ref != NULL) {
+    //         printf("%p -> ",  ref);
+    //         ref = ref->proxima;
+    //     }
+    //     printf("(NIL)\n");
+    // }
     LiberarTabelaArestas(GET);
     free(AET); // FIXME
     free(vertices);
