@@ -64,14 +64,13 @@ int main() {
     // }
 
     // PrepararPoligonoParaNovoViewport(r);
+    RasterizarPoligono(r);
 
     free(p->indice_vertices);
     free(p);
     free(r->indice_vertices);
     free(r->endereco_vertices);
     free(r);
-
-    RasterizarPoligono(NULL);
 
 
     free(transformados);
