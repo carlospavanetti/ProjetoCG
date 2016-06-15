@@ -2,7 +2,7 @@ COMPILADOR = @gcc
 DEBUG = -g -O0
 PARAMETROS =  $(DEBUG) -c -Wall -Iinclude
 
-BIBLIOTECAS = -lm
+BIBLIOTECAS = -lm -lGL -lglut -lGLU
 
 FONTES = $(shell find . -name '*.c')
 OBJETOS = $(FONTES:.c=.o)

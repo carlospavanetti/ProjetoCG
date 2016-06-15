@@ -20,7 +20,7 @@ Poligono *poligono_teste(double *vertices) {
     return P;
 }
 
-int main() {
+int __main() {
     InicializarContexto(0);
 
     #define NUMERO_VERTICES 3
